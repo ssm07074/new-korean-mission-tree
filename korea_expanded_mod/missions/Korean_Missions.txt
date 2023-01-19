@@ -1,0 +1,290 @@
+korea_mission_1 = {
+	slot = 2
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_establish_hangul = {
+	icon = mission_hangul
+	required_missions = { }
+	position = 1
+	
+	ai_weight = {
+			factor = 0.75
+		}
+	trigger = {
+		AND = {
+			is_year = 1446
+			NOT = {
+					estate_influence = {
+						estate = all
+						influence = 30
+					}
+				}
+			}
+		}
+	effect = {
+		country_event = { id = kor_expanded.1}
+			korea_region = {
+				add_province_modifier = {
+					name = kor_establish_hangul_1
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_hungu_sarim = {
+	icon = mission_scholar_officials
+	required_missions = { kor_establish_hangul }
+	position = 2
+	
+	trigger = {
+			has_country_flag = kor_sejo_coup
+			legitimacy_equivalent = 90
+			stability = 2 
+		}
+		
+	effect = {
+			clr_country_flag = kor_sejo_coup
+			country_event = {kor_expanded.3}
+		}
+	}
+	
+	kor_gyeongguk_daejoen = {
+	icon = mission_gyeongggukdaejeon
+	required_missions = { kor_hungu_sarim }
+	position = 3
+	
+	trigger = {
+			AND = {
+					has_adm_advisor = yes
+					has_dip_advisor = yes
+					has_mil_advisor = yes
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						estate_loyalty = {
+							estate = estate_church
+							loyalty = 60
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 60
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 60
+						}
+					}
+					is_at_war = no
+				}
+			}
+		effect = {
+			add_country_modifier = {
+				name = gyeongguk_daejoen
+				duration = -1
+			}
+		}
+	}
+	kor_renaissance = {
+	icon = kor_renaissance
+	required_missions = { kor_gyeongguk_daejoen jang_yeong_sil_legacy }
+	position = 4
+	provinces_to_highlight = {
+		region = korea_region
+	}
+		trigger = {
+			has_institution = renaissance
+			development_in_provinces = {
+				value = 250
+				region = korea_region
+			}
+		}
+	
+		effect = {
+			add_country_modifier = {
+				name = kor_renaissance_bloom
+				duration = 18250
+			}
+		}
+	}
+}
+korea_mission_2 = {
+	slot = 1
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	jang_yeong_sil_legacy = {
+	icon = kor_legacy
+	required_missions = {kor_establish_hangul}
+	position = 2
+	
+	trigger = {
+		OR = {
+				philosopher = 2
+				natural_scientist = 2
+				artist = 2
+			}
+		}
+	effect = {
+		add_country_modifier = {
+			name = kor_legacy
+			duration = 7300
+			}
+		}
+	}
+	
+	kor_engineering = {
+	icon = mission_have_manufactories
+	required_missions = { jang_yeong_sil_legacy }
+	position = 3
+	
+	trigger = {
+			workshop = 10
+		}
+	effect = {
+		korea_region = {
+			add_province_modifier = {
+					name = kor_engineering_skill
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_early_urbanization = {
+	icon = mission_early_game_buildings
+	required_missions = { kor_engineering kor_renaissance}
+	position = 5
+	provinces_to_highlight = {
+		OR = {
+				area = pyongan_area
+				area = hamgyeong_area
+				area = western_korea_area
+				area = eastern_korea_area
+				area = south_korea_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+				NOT = { owned_by = ROOT }
+				NOT = { num_of_times_improved_by_owner = 3 }
+				NOT = { has_production_building_trigger = yes }
+			}
+		}
+	trigger = {
+			south_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			eastern_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			western_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			hamgyeong_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			pyongan_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+		}
+		effect = {
+			korea_region = {
+				add_province_modifier = {
+					name = kor_urbanization
+					duration = -1
+				}
+			}
+		}
+	}
+}
+
+korea_mission_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_revive_byuklando = {
+	icon = mission_conquer_algiers
+	required_missions = { kor_establish_hangul }
+	position = 2
+	
+	provinces_to_highlight = {
+			province_id = 4231
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = marketplace }
+					NOT = { has_building = trade_depot }
+					NOT = { has_building = stock_exchange }
+				}
+			}
+		}
+	trigger = {
+			owns = 4231
+			4231 = {
+				OR = {
+					has_building = marketplace
+					has_building = trade_depot
+					has_building = stock_exchange
+				}
+			}
+			OR = {
+				full_idea_group = economic_ideas
+				full_idea_group = trade_ideas
+			}
+		}
+	effect = {
+		4231 = {
+				create_or_add_center_of_trade_level = { level = 1 }
+			}
+		}
+	}
+}
+	

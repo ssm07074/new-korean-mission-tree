@@ -1,0 +1,40 @@
+kor_hangul = {
+	all_power_cost = -0.05
+}
+kor_establish_hangul_1 = {
+	institution_growth = 2
+}
+kor_hall_of_worthies = {
+	advisor_cost = -0.2
+	advisor_pool = 1
+}
+kor_sarim = {
+	yearly_corruption = -0.1
+}
+kor_hungu = {
+	legitimacy = 1
+}
+gyeongguk_daejoen = {
+	global_tax_modifier = 0.1
+	global_unrest = -2	
+	global_autonomy = -0.05	
+}
+kor_renaissance_bloom = {
+	innovativeness_gain = 0.5
+	global_prosperity_growth = 0.2
+}
+kor_legacy = {
+	production_efficiency = 0.2
+	build_cost = -0.15
+	build_time = -0.2
+}
+kor_engineering_skill = {
+	local_build_cost = -0.15
+	local_build_time = -0.2	
+	local_development_cost = -0.1	
+	local_development_cost_modifier = -0.25	
+}
+kor_urbanization = {
+	global_allowed_num_of_buildings = 2
+	allowed_num_of_manufactories = 1
+}

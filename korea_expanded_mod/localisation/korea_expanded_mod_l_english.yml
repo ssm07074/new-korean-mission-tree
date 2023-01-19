@@ -1,0 +1,43 @@
+l_english:
+#missions
+ kor_establish_hangul_title: "Hangul The Alphabet"
+ kor_establish_hangul_desc: "Hangul is the Korean alphabet created in 1443 and promulgated in the 1446 work \"Huminjeongeum\", or \"The Proper Sounds For the Instruction of the People.\"\n\nSponsored by Sejong the Great and probably created by the Hall of Worthies, the new script was meant as a replacement for the Chinese characters used in Korea at the time, which was inefficient for expressing the Korean language. They were made easy, so that even a commoner could learn to read and write them. \"A wise man can acquaint himself with them before the morning is over. A stupid man in the space of ten days.\"\n\nThis would eventually lead to such a high literacy rate among those of lower birth that a paranoid king banned the use of Hangul in 1504. However, use did not stop entirely, and in the late 16th century Hangul saw a revival and quickly became the dominant alphabet in Korea."
+ kor_hungu_sarim_title: "Hungu and Sarim"
+ kor_hungu_sarim_desc: "It is now time to choose which side we should support."
+ kor_gyeongguk_daejoen_title: "Gyeongguk Daejoen"
+ kor_gyeongguk_daejoen_desc: "This remarkable work will stabilize our society!"
+ kor_renaissance_title: "Korean Renaissance"
+ kor_renaissance_desc: "The re-birth of Korean culture will shine enternally!"
+ jang_yeong_sil_legacy_title: "Legacy of Jang Yeong Sil"
+ jang_yeong_sil_legacy_desc: "We should reveal the legacy of talented scientist"
+ kor_engineering_title: "Korean Engineering Skill"
+ kor_engineering_desc: "We should maxmize our talents to develop our homeland"
+ kor_early_urbanization_title: "Early Urbanization in Korea"
+ kor_early_urbanization_desc: "Either we like it or not, this demographical shift is something we cannot control"
+#events
+ kor_expanded.1.t: "Conflict with the Ming Dynasty"
+ kor_expanded.1.d: "The invention of a new writing system might be seen as a break from tradition and negatively impact the Ming dynasty's relationship."
+ kor_expanded.1.a: "Our nation needs an alphabet more fit for our tongue"
+ kor_expanded.1.b: "We should not stimulate Chinese"
+ kor_expanded.2.T: "Sejo Attempts to Usurp the Throne!"
+ kor_expanded.2.D: "King Danjong rose to the throne when he was merely twelve, and would only rule for two years. His uncle, and brother of the former king, Sejo, usurped his throne and seized the kingdom for himself. After a failed assassination attempt by ministers loyal to Danjong, Sejo had them and the former king killed.\n\nDespite his ruthlessness, or possibly because of his unstoppable daring, he was a successful ruler, centralising the country and encouraging the publication of books on history, economics and religion. He was also a great military strategist, and attacked the Jurchen tribes of the north multiple times. \n\nMost famously, in 1468 he established the first form of constitutional law in Korea, the Grand Code for State Administration."
+ kor_expanded.2.a: "We need a stronger king than this child!"
+ kor_expanded.2.b: "Send Seju into exile and keep the king safe!"
+ kor_expanded.3.T: "Hungu and Sarim"
+ kor_expanded.3.D: "Hungu was a powerful noble and military leader of the Sarim faction during the reign of Sejo. The Sarim faction was composed of scholars and officials who had passed the highest level of the civil service examinations and who were committed to the Confucian ideals and the strict adherence to the classical texts. We should decide which fraction to support"
+ kor_expanded.3.a: "Reduce the power of the ruling dynasty and the powerful noble families and support the scholars and officials who passed the highest level of the civil service examinations."
+ kor_expanded.3.b: "Promote the Confucian ideals and the strict adherence to the classical texts, as well as trying to build a strong and powerful military to protect the state from its neighbors."
+ 
+#modifiers
+ kor_establish_hangul_1: "Presense of Hangul"
+ kor_hangul: "Hangul"
+ kor_hall_of_worthies: "Hall of Worthies"
+ kor_sarim: "Sarim"
+ kor_hungu: "Hungu"
+ gyeongguk_daejoen: "Gyeongguk Daejoen"
+ kor_renaissance_bloom: "Bloosom of Korean Renaissance"
+ kor_legacy: "Legacy of Talented Scientist"
+ kor_engineering_skill: "Korean Engineering Skill"
+ kor_urbanization: "Urbanization"
+ 
+ 
