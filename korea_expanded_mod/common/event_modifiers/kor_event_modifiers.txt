@@ -29,12 +29,36 @@ kor_legacy = {
 	build_time = -0.2
 }
 kor_engineering_skill = {
-	local_build_cost = -0.15
-	local_build_time = -0.2	
 	local_development_cost = -0.1	
 	local_development_cost_modifier = -0.25	
 }
 kor_urbanization = {
 	global_allowed_num_of_buildings = 2
 	allowed_num_of_manufactories = 1
+}
+kor_professioanl_army = {
+	yearly_army_professionalism = 0.02
+	drill_decay_modifier = -0.25
+	drill_gain_modifier = 0.25
+	land_attrition = -1
+	movement_speed = 0.25
+	land_forcelimit_modifier = -0.2
+	global_manpower_modifier = -0.2
+	reinforce_speed = -0.15
+}
+kor_conscription = {
+	land_forcelimit_modifier = 0.25
+	global_manpower_modifier = 0.5
+	reinforce_speed = 0.3
+	global_regiment_recruit_speed = -0.25
+	global_regiment_cost = -0.25
+	land_maintenance_modifier = -0.25
+	global_supply_limit_modifier = 1
+	discipline = -0.05
+	land_morale = -0.1
+	movement_speed = -0.25
+}
+kor_togwan = {
+	local_autonomy = 0.075
+	local_tax_modifier = 0.2
 }

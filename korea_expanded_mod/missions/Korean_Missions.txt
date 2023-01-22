@@ -44,14 +44,18 @@ korea_mission_1 = {
 	position = 2
 	
 	trigger = {
-			has_country_flag = kor_sejo_coup
-			legitimacy_equivalent = 90
-			stability = 2 
+		OR = {
+				has_country_flag = kor_sejo_coup
+			AND = {
+					legitimacy_equivalent = 90
+					stability = 2 
+				}
+			}
 		}
 		
 	effect = {
 			clr_country_flag = kor_sejo_coup
-			country_event = {kor_expanded.3}
+			country_event = { id = kor_expanded.3 }
 		}
 	}
 	
@@ -164,6 +168,7 @@ korea_mission_2 = {
 			workshop = 10
 		}
 	effect = {
+		enable_development_on_buildings_built = yes
 		korea_region = {
 			add_province_modifier = {
 					name = kor_engineering_skill
@@ -282,9 +287,405 @@ korea_mission_3 = {
 		}
 	effect = {
 		4231 = {
-				create_or_add_center_of_trade_level = { level = 1 }
+				set_center_level_2_center_of_trade
 			}
 		}
 	}
 }
+
+korea_mission_4 = {
+	slot = 5
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
 	
+	kor_remilitarize = {
+	icon = mission_assemble_an_army
+	position = 1
+	required_missions = {  }
+	trigger = {
+		army_size_percentage = 1
+	}
+	effect = {
+			country_event = { id = kor_expanded.4 }
+			if = {
+				limit = {
+					has_country_flag = starts_with_inwards_perfection
+					has_estate_privilege = estate_church_inwards_perfection
+				}
+				remove_estate_privilege = estate_church_inwards_perfection
+				clr_country_flag = starts_with_inwards_perfection
+			}
+		}
+	}
+	
+	kor_northern_path = {
+	icon = mission_konkani_pirates
+	position = 2
+	required_missions = { kor_remilitarize }
+	provinces_to_highlight = {
+			OR = {
+				area = pyongan_area
+				area = hamgyeong_area
+			}
+			OR = {
+				NOT = { owned_by = ROOT }
+				NOT = { fort_level = 1 }
+				NOT = { base_manpower = 3 }
+			}
+			NOT = {
+				pyongan_area = {
+					owned_by = ROOT
+					fort_level = 1
+					base_manpower = 3
+				}
+			}
+			NOT = {
+				hamgyeong_area = {
+					owned_by = ROOT
+					fort_level = 1
+					base_manpower = 3
+				}
+			}
+		}
+		trigger = {
+			OR = {
+				pyongan_area = {
+					owned_by = ROOT
+					fort_level = 1
+					base_manpower = 3
+				}
+				hamgyeong_area = {
+					owned_by = ROOT
+					fort_level = 1
+					base_manpower = 3
+				}
+			}
+		}
+		effect = {
+			create_general = {
+				tradition = 100
+				add_shock = 2
+			}
+			add_mil_power = 100
+		}
+	}
+	
+	kor_samin_policy = {
+	icon = mission_konkani_pirates
+	position = 3
+	required_missions = { kor_northern_path }
+	provinces_to_highlight = {
+			OR = {
+				AND = {
+					province_id = 2742
+					NOT = { culture = korean }
+					NOT = { culture = korean_new }
+				}
+				AND = {
+					province_id = 2743
+					NOT = { culture = korean }
+					NOT = { culture = korean_new }
+				}
+			}
+		}
+
+		trigger = {
+			2742 = {
+				OR = {
+					culture = korean
+					culture = korean_new
+				}
+			}
+			2743 = {
+				OR = {
+					culture = korean
+					culture = korean_new
+				}
+			}
+		}
+		effect = {
+			2742 = {
+				add_base_tax = 1
+				add_base_production = 1
+				add_base_manpower = 1
+				add_province_modifier = {
+					name = kor_togwan
+					duration = -7300
+				}
+			}
+			2743 = {
+				add_base_tax = 1
+				add_base_production = 1
+				add_base_manpower = 1
+				add_province_modifier = {
+					name = kor_togwan
+					duration = -7300
+				}
+			}
+		}
+	}
+	
+	kor_claim_Paektu = {
+		icon = mission_unite_home_region
+		required_missions = { }
+		position = 4
+		required_missions = { kor_samin_policy }
+		
+		provinces_to_highlight = {
+			province_id = 4201
+			OR = {
+				NOT = { owned_by = ROOT }
+				NOT = { is_core = ROOT }
+			}
+		}
+		
+		trigger = {
+			4201 = {
+				owned_by = ROOT
+				is_core = ROOT
+			}
+		}
+		
+		effect = {
+			add_prestige = 15
+		
+			ningguta_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_core = ROOT
+			}
+			jilin_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_core = ROOT
+			}
+			liaoning_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_core = ROOT
+			}
+			furdan_area = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+				}
+				add_core = ROOT
+			}
+		}
+	}
+	
+	kor_reclaim_goguryeo = {
+	icon = mission_conquer_50_development
+	required_missions = { kor_claim_Paektu }
+	position = 5
+		
+	provinces_to_highlight = {
+			OR = {
+				province_id = 2112
+				province_id = 2113
+				province_id = 726
+				province_id = 2106
+				province_id = 4652
+				area = jilin_area
+				area = ningguta_area
+				region = korea_region
+			}
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+		}
+	
+		trigger = {
+				2112 = {
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				2113 = {
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				726 = {
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				2106 = {
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				4652 = {
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				jilin_area = {
+					type = all
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				ningguta_area = {
+					type = all
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+				korea_region = {
+					type = all
+					country_or_non_sovereign_subject_holds = ROOT
+				}
+			}
+		effect = {
+			manchuria_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+				}
+				add_core = ROOT
+			}
+		}
+	}
+	
+	KOR_subjugate_the_jurchens = {
+		icon = mission_junnagadh_fort
+		required_missions = { kor_reclaim_goguryeo }
+		position = 6
+		provinces_to_highlight = {
+			region = manchuria_region
+			NOT = { country_or_non_sovereign_subject_holds = ROOT }
+			ROOT = {
+				NOT = {
+					num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+						value = 30
+						region = manchuria_region
+					}
+				}
+			}
+		}
+		trigger = {
+			num_of_provinces_owned_or_owned_by_non_sovereign_subjects_with = {
+				value = 30
+				region = manchuria_region
+			}
+		}
+		effect = {
+			hidden_effect = {
+				manchuria_region = {
+					limit = {
+						is_state_core = ROOT
+						owned_by = ROOT
+					}
+					add_local_autonomy = -10
+				}
+			}
+			hidden_effect = {
+				every_owned_province = {
+					limit = {
+						culture_group = evenks
+					}
+					change_culture = korean
+				}
+				every_owned_province = {
+					limit = {
+						culture_group = kamchatkan_g
+					}
+					change_culture = korean
+				}
+			}
+		}
+	}
+}
+
+korea_mission_5 = {
+	slot = 4
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_southern_path = {
+	icon = mission_arabian_ports
+	position = 2
+	required_missions = { kor_remilitarize }
+	provinces_to_highlight = {
+			province_id = 2745
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = shipyard }
+					NOT = { has_building = dock }
+					NOT = { has_building = drydock }
+					NOT = { has_building = grand_shipyard }
+				}
+			}
+		}
+		trigger = {
+			2745 = {
+				OR = {
+					has_building = shipyard
+					has_building = dock
+					has_building = drydock
+					has_building = grand_shipyard
+				}
+			}
+			num_of_galley = 15
+		}
+		
+		effect = { 
+			sanindo_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			kyushu_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			northern_kyushu = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			saigoku_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+		}
+	}
+	kor_defeat_shogun = {
+		icon = mission_japanese_samurai
+		position = 3
+		required_missions = { kor_southern_path }
+		provinces_to_highlight = {
+			province_id = 1020
+		}
+
+		trigger = {
+			owns = 1020
+		}
+		
+		effect = {
+			
+			country_event = { id = flavor_kor.7 }
+
+			japan_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+					is_city = yes
+				}
+				add_core = KOR
+			}
+		}
+	}
+}
