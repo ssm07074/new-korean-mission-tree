@@ -287,13 +287,114 @@ korea_mission_3 = {
 		}
 	effect = {
 		4231 = {
-				set_center_level_2_center_of_trade
+				center_of_trade = 1
 			}
 		}
 	}
 }
 
 korea_mission_4 = {
+	slot = 4
+	generic = no
+	ai = yes
+	potential_on_load = {
+		has_dlc = "Mandate of Heaven"
+	}
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+		has_dlc = "Mandate of Heaven"
+	}
+	has_country_shield = yes
+	
+	kor_southern_path = {
+	icon = mission_arabian_ports
+	position = 2
+	required_missions = { kor_remilitarize }
+	provinces_to_highlight = {
+			province_id = 2745
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = shipyard }
+					NOT = { has_building = dock }
+					NOT = { has_building = drydock }
+					NOT = { has_building = grand_shipyard }
+				}
+			}
+		}
+		trigger = {
+			2745 = {
+				OR = {
+					has_building = shipyard
+					has_building = dock
+					has_building = drydock
+					has_building = grand_shipyard
+				}
+			}
+			num_of_galley = 15
+		}
+		
+		effect = { 
+			sanindo_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			kyushu_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			northern_kyushu = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+			saigoku_area = {
+				limit = {
+					NOT = { owned_by = ROOT }
+					NOT = { is_core = ROOT }
+				}
+				add_permanent_claim = root
+			}
+		}
+	}
+	kor_defeat_shogun = {
+		icon = mission_japanese_samurai
+		position = 3
+		required_missions = { kor_southern_path }
+		provinces_to_highlight = {
+			province_id = 1020
+		}
+
+		trigger = {
+			owns = 1020
+		}
+		
+		effect = {
+			
+			country_event = { id = flavor_kor.7 }
+
+			japan_region = {
+				limit = {
+					NOT = { is_core = ROOT }
+					NOT = { is_permanent_claim = ROOT }
+					is_city = yes
+				}
+				add_core = KOR
+			}
+		}
+	}
+}
+
+korea_mission_5 = {
 	slot = 5
 	generic = no
 	ai = yes
@@ -325,7 +426,6 @@ korea_mission_4 = {
 	
 	kor_northern_path = {
 	icon = mission_konkani_pirates
-	position = 2
 	required_missions = { kor_remilitarize }
 	provinces_to_highlight = {
 			OR = {
@@ -377,7 +477,6 @@ korea_mission_4 = {
 	
 	kor_samin_policy = {
 	icon = mission_konkani_pirates
-	position = 3
 	required_missions = { kor_northern_path }
 	provinces_to_highlight = {
 			OR = {
@@ -488,8 +587,6 @@ korea_mission_4 = {
 	kor_reclaim_goguryeo = {
 	icon = mission_conquer_50_development
 	required_missions = { kor_claim_Paektu }
-	position = 5
-		
 	provinces_to_highlight = {
 			OR = {
 				province_id = 2112
@@ -546,7 +643,6 @@ korea_mission_4 = {
 	KOR_subjugate_the_jurchens = {
 		icon = mission_junnagadh_fort
 		required_missions = { kor_reclaim_goguryeo }
-		position = 6
 		provinces_to_highlight = {
 			region = manchuria_region
 			NOT = { country_or_non_sovereign_subject_holds = ROOT }
@@ -588,103 +684,6 @@ korea_mission_4 = {
 					}
 					change_culture = korean
 				}
-			}
-		}
-	}
-}
-
-korea_mission_5 = {
-	slot = 4
-	generic = no
-	ai = yes
-	potential = {
-		tag = KOR
-		NOT = { map_setup = map_setup_random }
-	}
-	has_country_shield = yes
-	
-	kor_southern_path = {
-	icon = mission_arabian_ports
-	position = 2
-	required_missions = { kor_remilitarize }
-	provinces_to_highlight = {
-			province_id = 2745
-			OR = {
-				NOT = { owned_by = ROOT }
-				AND = {
-					NOT = { has_building = shipyard }
-					NOT = { has_building = dock }
-					NOT = { has_building = drydock }
-					NOT = { has_building = grand_shipyard }
-				}
-			}
-		}
-		trigger = {
-			2745 = {
-				OR = {
-					has_building = shipyard
-					has_building = dock
-					has_building = drydock
-					has_building = grand_shipyard
-				}
-			}
-			num_of_galley = 15
-		}
-		
-		effect = { 
-			sanindo_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-					NOT = { is_core = ROOT }
-				}
-				add_permanent_claim = root
-			}
-			kyushu_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-					NOT = { is_core = ROOT }
-				}
-				add_permanent_claim = root
-			}
-			northern_kyushu = {
-				limit = {
-					NOT = { owned_by = ROOT }
-					NOT = { is_core = ROOT }
-				}
-				add_permanent_claim = root
-			}
-			saigoku_area = {
-				limit = {
-					NOT = { owned_by = ROOT }
-					NOT = { is_core = ROOT }
-				}
-				add_permanent_claim = root
-			}
-		}
-	}
-	kor_defeat_shogun = {
-		icon = mission_japanese_samurai
-		position = 3
-		required_missions = { kor_southern_path }
-		provinces_to_highlight = {
-			province_id = 1020
-		}
-
-		trigger = {
-			owns = 1020
-		}
-		
-		effect = {
-			
-			country_event = { id = flavor_kor.7 }
-
-			japan_region = {
-				limit = {
-					NOT = { is_core = ROOT }
-					NOT = { is_permanent_claim = ROOT }
-					is_city = yes
-				}
-				add_core = KOR
 			}
 		}
 	}
