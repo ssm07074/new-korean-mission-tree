@@ -1,0 +1,1095 @@
+korean_mission_1 = {
+	slot = 2
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_renaissance = {
+	icon = kor_renaissance
+	required_missions = { }
+	position = 1
+	trigger = {
+			has_institution = renaissance
+		}
+	
+	effect = {
+		add_country_modifier = {
+				name = kor_renaissance_bloom
+				duration = 18250
+			}
+		}
+	}
+	
+	kor_humanism = {
+	icon = mission_hands_praying
+	required_missions = { kor_renaissance }
+	position = 2
+	trigger = {
+		if = {
+			limit = { has_dlc = "Rule Britannia" } 
+			OR = { 
+				monthly_adm = 10
+				innovativeness = 60
+			} 
+		}
+		else = { prestige = 90 } 
+		if = {
+			limit = { has_dlc = "Rights of Man" } 
+			OR = { 
+				full_idea_group = innovativeness_ideas 
+				ruler_has_personality = free_thinker_personality 
+				ruler_has_personality = scholar_personality 
+				ruler_total_stats = {
+					stats = 14 
+					who = ROOT
+				}
+			}
+		}
+		else = { 
+			OR = { 
+				full_idea_group = innovativeness_ideas 
+				ruler_total_stats = {
+					stats = 14 
+					who = ROOT
+				}
+			}
+		}
+	}
+	effect = {
+		add_country_modifier = {
+				name = kor_sejong_legacy
+				duration = 9125 
+			}
+			if = {
+				limit = { 
+						NOT = { innovativeness = 89 } 
+						has_dlc = "Rule Britannia" 
+					}
+				change_innovativeness = 10
+			}
+			else = {
+				add_adm_power = 50 
+				add_dip_power = 50 
+				add_mil_power = 50 
+			}
+		}
+	}
+	establish_uijeongbu = {
+	icon = mission_early_modern_university
+	required_missions = { kor_humanism }
+	position = 3
+	provinces_to_highlight = {
+		province_id = 735
+		OR = {
+			NOT = { owned_by = ROOT }
+			AND = {
+				NOT = { has_building = courthouse }
+				NOT = { has_building = town_hall }
+			}
+		}
+	}
+	trigger = {
+		owns = 735
+		735 = {
+			OR = {
+				has_building = courthouse
+				has_building = town_hall
+			}
+		}
+	}
+	effect = {
+			add_country_modifier = {
+				name = kor_state_council
+				duration = -1
+			}
+			add_adm_power = -100
+		}
+	}
+	kor_establish_hongmungwan = {
+	icon = mission_rb_the_education_acts
+	required_missions = { establish_uijeongbu }
+	position = 4
+	provinces_to_highlight = {
+		region = korea_region
+		OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = courthouse }
+					NOT = { has_building = town_hall }
+				}
+			}
+		}
+	trigger = {
+			pyongan_area = {
+				OR = {
+					has_building = courthouse
+					has_building = town_hall
+				}
+			}
+			western_korea_area = {
+				OR = {
+					has_building = courthouse
+					has_building = town_hall
+				}
+			}
+			eastern_korea_area = {
+				OR = {
+					has_building = courthouse
+					has_building = town_hall
+				}
+			}
+			south_korea_area = {
+				OR = {
+					has_building = courthouse
+					has_building = town_hall
+				}
+			}
+			hamgyeong_area = {
+				OR = {
+					has_building = courthouse
+					has_building = town_hall
+				}
+			}
+		}
+	effect = {
+			add_country_modifier = {
+				name = kor_hongmungwan
+				duration = -1
+			}
+		}
+	}
+	kor_gyeongguk_daejoen = {
+	icon = mission_gyeongggukdaejeon
+	required_missions = { kor_establish_hongmungwan }
+	position = 5
+	
+	trigger = {
+			AND = {
+					adm = 5
+					if = {
+						limit = {
+							has_estate = estate_church
+						}
+						estate_loyalty = {
+							estate = estate_church
+							loyalty = 60
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_burghers
+						}
+						estate_loyalty = {
+							estate = estate_burghers
+							loyalty = 60
+						}
+					}
+					if = {
+						limit = {
+							has_estate = estate_nobles
+						}
+						estate_loyalty = {
+							estate = estate_nobles
+							loyalty = 60
+						}
+					}
+					is_at_war = no
+				}
+			}
+		effect = {
+			add_country_modifier = {
+				name = gyeongguk_daejoen
+				duration = -1
+			}
+		}
+	}
+	kor_end_factional_strife = {
+	icon = mission_scholar_officials
+	required_missions = { kor_gyeongguk_daejoen kor_reform_society }
+	position = 7
+	trigger = {
+		custom_trigger_tooltip = {
+			tooltip = KOR_has_factional_upheaval_tooltip
+			has_country_modifier = kor_factional_upheaval
+		}
+		custom_trigger_tooltip = {
+			tooltip = KOR_has_factional_upheaval_tooltip2
+			has_country_flag = kor_third_literati_purge
+		}
+		OR = {
+			crown_land_share = 90
+				custom_trigger_tooltip = {
+					tooltip = KOR_two_pleased_estates_tooltip #Two §Yestates§! have at least §Y70 loyalty§!, the other has at least §Y50 loyalty§!.
+					OR = {
+						AND = {
+							estate_loyalty = {
+								estate = estate_burghers
+								loyalty = 60
+							}
+							estate_loyalty = {
+								estate = estate_church
+								loyalty = 40
+							}
+							estate_loyalty = {
+								estate = estate_nobles
+								loyalty = 40
+							}
+						}
+						AND = {
+							estate_loyalty = {
+								estate = estate_burghers
+								loyalty = 40
+							}
+							estate_loyalty = {
+								estate = estate_church
+								loyalty = 60
+							}
+							estate_loyalty = {
+								estate = estate_nobles
+								loyalty = 40
+							}
+						}
+						AND = {
+							estate_loyalty = {
+								estate = estate_burghers
+								loyalty = 40
+							}
+							estate_loyalty = {
+								estate = estate_church
+								loyalty = 40
+							}
+							estate_loyalty = {
+								estate = estate_nobles
+								loyalty = 60
+							}
+						}
+						AND = {
+							has_parliament = yes
+							estate_loyalty = {
+								estate = estate_church
+								loyalty = 60
+							}
+							estate_loyalty = {
+								estate = estate_burghers
+								loyalty = 40
+							}
+						}
+						AND = {
+							has_parliament = yes
+							estate_loyalty = {
+								estate = estate_church
+								loyalty = 40
+							}
+							estate_loyalty = {
+								estate = estate_burghers
+								loyalty = 60
+							}
+						}
+					}
+				}
+			}
+		}	
+		effect = {
+			if = {
+				limit = {
+					crown_land_share = 90
+				}
+				add_stability_or_adm_power = yes
+			}
+			else = {
+				hidden_effect = {
+					add_estate_loyalty_modifier = {
+						estate = estate_nobles
+						desc = EST_KOR_FACTIONAL_UNITY
+						loyalty = 15
+						duration = 7300
+					}
+					add_estate_loyalty_modifier = {
+						estate = estate_church
+						desc = EST_KOR_FACTIONAL_UNITY
+						loyalty = 15
+						duration = 7300
+					}
+					add_estate_loyalty_modifier = {
+						estate = estate_burghers
+						desc = EST_KOR_FACTIONAL_UNITY
+						loyalty = 15
+						duration = 7300
+					}
+				}
+				add_country_modifier = {
+					name = kor_factional_unity
+					duration = 7300
+					
+				}
+				custom_tooltip = kor_end_factional_strife_tt
+			}
+			remove_country_modifier = kor_factional_upheaval
+		}
+	}
+	kor_recollect_huminjeongeum = {
+	icon = mission_restore_faith_in_the_throne
+	required_missions = { kor_end_factional_strife kor_expand_seonggyungwan }
+	position = 9
+	trigger = { adm = 6 }
+		effect = {
+			add_country_modifier = {
+				name = kor_hangul
+				duration = -1
+			}
+		}
+	}
+}
+
+korea_mission_2 = {
+	slot = 1
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	jang_yeong_sil_legacy = {
+	icon = kor_legacy
+	required_missions = { kor_renaissance }
+	position = 2
+	
+	trigger = {
+		OR = {
+				philosopher = 2
+				natural_scientist = 2
+				artist = 2
+			}
+		}
+	effect = {
+		add_country_modifier = {
+			name = kor_legacy
+			duration = 7300
+			}
+		}
+	}
+	
+	kor_engineering = {
+	icon = mission_have_manufactories
+	required_missions = { jang_yeong_sil_legacy }
+	position = 3
+	
+	trigger = {
+			workshop = 10
+		}
+	effect = {
+		enable_development_on_buildings_built = yes
+		korea_region = {
+			add_province_modifier = {
+					name = kor_engineering_skill
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_early_industry = {
+		icon = mission_have_manufactories
+		required_missions = { kor_engineering }
+		position = 4
+		trigger = {
+			num_of_owned_manufactory_combined_trigger = { amount = 10 }
+		}
+		effect = {
+			add_years_of_income = 1.5
+			add_country_modifier = {
+				name = kor_industry
+				duration = 18250
+			}
+		}
+	}
+	
+	kor_early_urbanization = {
+	icon = mission_early_game_buildings
+	required_missions = { kor_engineering kor_renaissance}
+	position = 5
+	provinces_to_highlight = {
+		OR = {
+				area = pyongan_area
+				area = hamgyeong_area
+				area = western_korea_area
+				area = eastern_korea_area
+				area = south_korea_area
+			}
+			OR = {
+				NOT = { is_core = ROOT }
+				NOT = { owned_by = ROOT }
+				NOT = { num_of_times_improved_by_owner = 3 }
+				NOT = { has_production_building_trigger = yes }
+			}
+		}
+	trigger = {
+			south_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			eastern_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			western_korea_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			hamgyeong_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+			pyongan_area = {
+				owned_by = ROOT
+				is_core = ROOT
+				num_of_times_improved = 3
+				has_production_building_trigger = yes
+				type = all
+			}
+		}
+		effect = {
+			korea_region = {
+				add_province_modifier = {
+					name = kor_urbanization
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_seoul = {
+	icon = mission_seize_the_bengal_coast
+	required_missions = { kor_engineering kor_renaissance}
+	position = 6
+	provinces_to_highlight = {
+		province_id = 735
+		NOT = { has_building = town_hall }
+	}
+	trigger = {
+			735 = {
+				has_building = town_hall
+			}
+		}
+		effect = {
+			735 = {
+				rename_capital = "Seoul"
+				add_base_tax = 3
+				add_base_production = 3
+				add_base_manpower = 3
+			}
+		}
+	}
+}
+
+korea_mission_3 = {
+	slot = 3
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_establish_hangul = {
+	icon = mission_hangul
+	required_missions = { }
+	position = 1
+	
+	ai_weight = {
+			factor = 0.75
+		}
+	trigger = {
+		AND = {
+			is_year = 1446
+			NOT = {
+					estate_influence = {
+						estate = all
+						influence = 30
+					}
+				}
+			}
+		}
+	effect = {
+		country_event = { id = kor_expanded.1}
+			korea_region = {
+				add_province_modifier = {
+					name = kor_establish_hangul_1
+					duration = -1
+				}
+			}
+		}
+	}
+	kor_daedong = {
+	icon = mission_noble_council
+	required_missions = { kor_establish_hangul }
+	position = 2
+	trigger = {
+			AND = {
+				average_autonomy = 5
+				average_unrest = 0
+			}
+		}
+	effect = {
+			add_country_modifier = {
+				name = kor_daedong_law
+				duration = -1
+			}
+		}
+	}
+	kor_tangpyeong = {
+	icon = mission_scholar_officials
+	required_missions = { kor_daedong }
+	position = 3
+	trigger = {
+		AND = {
+			NOT = { 
+				estate_influence = {
+					estate = all
+					influence = 25
+				}
+			}
+			NOT = {
+				estate_loyalty = {
+					estate = all
+					loyalty = 50
+				}
+			}
+		}
+	}
+	effect = {
+			add_estate_loyalty = {
+				estate = all
+				loyalty = 10
+			}
+			change_estate_land_share = {
+				estate = all
+				share = -15
+			}
+		}
+	}
+	kor_reform_hopae = {
+	icon = mission_rice_field
+	required_missions = { kor_tangpyeong }
+	position = 4
+	trigger = {
+			num_of_owned_provinces_with = {
+				value = 10
+				region = korea_region
+				OR = {
+					has_building = barracks
+					has_building = training_fields
+				}
+			}
+		}
+	effect = {
+			add_country_modifier = {
+				name = kor_hopae
+				duration = -1
+			}
+		}
+	}
+	kor_silhak = {
+	icon = mission_dhr_court_education
+	required_missions = { kor_reform_hopae }
+	position = 5
+	trigger = {
+		AND = {
+			num_of_harmonized = 4
+			harmony = 50
+		}
+	}
+	effect = {
+			add_country_modifier = {
+				name = kor_silhak_movement
+				duration = -1
+			}
+		}
+	}
+	kor_reform_society = {
+	icon = mission_clear_the_delta
+	required_missions = { kor_silhak }
+	position = 6
+	trigger = {
+			AND = {
+				has_country_flag = kor_peasant_struggles
+				government_reform_progress = 5
+		}
+	}
+	effect = {
+			add_stability_or_adm_power = yes
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = kor_peasant_struggles
+					}
+				}
+				custom_tooltip = kor_peasant_struggles_mission_tt1
+				hidden_effect = {
+					set_country_flag = kor_peasant_struggles_resolved
+				}
+			}
+			else_if = {
+				limit = {
+					has_country_modifier = kor_peasant_struggles
+				}
+				remove_country_modifier = kor_peasant_struggles
+				custom_tooltip = kor_peasant_struggles_mission_tt2
+				hidden_effect = {
+					set_country_flag = kor_peasant_struggles_resolved
+				}
+			}
+			else = {
+				add_legitimacy = 15
+			}
+		}
+	}
+	
+	kor_revive_hall_of_worthies = {
+	icon = mission_scholar_officials
+	required_missions = { kor_reform_society }
+	position = 7
+	
+	trigger = {
+		has_adm_advisor = yes
+		has_dip_advisor = yes
+		has_mil_advisor = yes
+		}
+	effect = {
+		add_country_modifier = {
+			name = revive_hall_of_worthies
+			duration = -1
+			}
+		}
+	}
+	
+	kor_expand_seonggyungwan = {
+	icon = mission_rb_the_education_acts
+	required_missions = { kor_revive_hall_of_worthies }
+	position = 8
+	
+	trigger = {
+			num_of_owned_provinces_with = {
+				value = 10
+				region = korea_region
+				has_building = university
+			}
+		}
+	effect = {
+			add_country_modifier = {
+				name = kor_seongkyungwan_established
+				duration = -1
+			}
+		}
+	}
+}
+korea_mission_4 = {
+	slot = 4
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_bobusang = {
+	icon = mission_asian_trader
+	required_missions = {  }
+	position = 1
+	trigger = {
+		OR = {
+			mercantilism = 15
+			estate_influence = {
+				estate = estate_burghers
+				influence = 45
+			}
+		}
+	}
+		effect = {
+			add_country_modifier = {
+				name = kor_bobusang
+				duration = 9125
+			}
+		}
+	}
+	
+	kor_revive_byuklando = {
+	icon = mission_conquer_algiers
+	required_missions = { kor_bobusang }
+	position = 2
+	
+	provinces_to_highlight = {
+			province_id = 4231
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = marketplace }
+					NOT = { has_building = trade_depot }
+					NOT = { has_building = stock_exchange }
+				}
+			}
+		}
+	trigger = {
+			owns = 4231
+			4231 = {
+				OR = {
+					has_building = marketplace
+					has_building = trade_depot
+					has_building = stock_exchange
+				}
+			}
+		}
+	effect = {
+		4231 = {
+				center_of_trade = 1
+				add_base_production = 2
+				add_trade_modifier = {
+					who = root
+					duration = 7300
+					power = 30
+					key = kor_traders_tm
+				}
+			}
+		}
+	}
+	
+	kor_commerce_uiju = {
+	icon = mission_coromandel_trade
+	required_missions = { kor_revive_byuklando }
+	position = 3
+	provinces_to_highlight = {
+			province_id = 2744
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = marketplace }
+					NOT = { has_building = stock_exchange }
+					NOT = { has_building = trade_depot }
+				}
+				AND = {
+					has_dlc = "Dharma"
+					NOT = { province_has_center_of_trade_of_level = 2 }
+				}
+				AND = {
+					NOT = { has_building = workshop }
+					NOT = { has_building = counting_house }
+				}
+			}
+		}
+	trigger = {
+			owns = 2744
+			2744 = {
+				if = {
+					limit = {
+						has_dlc = "Dharma"
+					}
+					province_has_center_of_trade_of_level = 2
+				}
+				OR = {
+					has_building = marketplace
+					has_building = stock_exchange
+					has_building = trade_depot
+				}
+				OR = {
+					has_building = workshop
+					has_building = counting_house
+				}
+			}
+		}
+	effect = {
+			add_country_modifier = {
+				name = kor_chinese_trade
+				duration = 10950
+			}
+		}
+	}
+	
+	kor_market_suwon = {
+	icon = mission_bedouins
+	required_missions = { kor_commerce_uiju }
+	position = 4
+	provinces_to_highlight = {
+			province_id = 4230
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = marketplace }
+					NOT = { has_building = trade_depot }
+					NOT = { has_building = stock_exchange }
+				}
+			}
+		}
+	trigger = {
+			owns = 4230
+			4230 = {
+				OR = {
+					has_building = marketplace
+					has_building = trade_depot
+					has_building = stock_exchange
+				}
+			}
+		OR = {
+				full_idea_group = economic_ideas
+				full_idea_group = trade_ideas
+			}
+		}
+	effect = {
+			4230 = {
+				center_of_trade = 1
+			}
+		}
+	}
+	
+	kor_dominate_jap_trade = {
+	icon = mission_market_place_with_asian_traders
+		required_missions = { kor_market_suwon }
+		position = 5
+
+		provinces_to_highlight = {
+			province_id = 1376
+		}
+
+		trigger = {
+			1376 = {
+				trade_share = {
+					country = root
+					share = 50
+				}
+			}
+		}
+
+		effect = {
+			add_country_modifier = {
+				name = kor_mission_traders
+				duration = 7300
+			}
+		}
+	}
+	
+	kor_dongrae_port = {
+	icon = mission_naval_dominance
+	required_missions = { kor_dominate_jap_trade }
+	position = 6
+	provinces_to_highlight = {
+			province_id = 2745
+			OR = {
+				NOT = { owned_by = ROOT }
+				AND = {
+					NOT = { has_building = marketplace }
+					NOT = { has_building = stock_exchange }
+					NOT = { has_building = trade_depot }
+				}
+				AND = {
+					has_dlc = "Dharma"
+					NOT = { province_has_center_of_trade_of_level = 3 }
+				}
+				AND = {
+					NOT = { has_building = workshop }
+					NOT = { has_building = counting_house }
+				}
+			}
+		}
+		trigger = {
+			owns = 2745
+			2745 = {
+				if = {
+					limit = {
+						has_dlc = "Dharma"
+					}
+					province_has_center_of_trade_of_level = 3
+				}
+				OR = {
+					has_building = marketplace
+					has_building = stock_exchange
+					has_building = trade_depot
+				}
+				OR = {
+					has_building = workshop
+					has_building = counting_house
+				}
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = KOR_international_trade
+				duration = -1
+			}
+			if = {
+				limit = {
+					is_institution_enabled = global_trade
+					NOT = { has_institution = global_trade }
+				}
+				2745 = {
+					add_institution_embracement = {
+						which = global_trade
+						value = 100
+					}
+				}
+			}
+		}
+	}
+}
+
+korea_mission_5 = {
+	slot = 5
+	generic = no
+	ai = yes
+	potential = {
+		tag = KOR
+		NOT = { map_setup = map_setup_random }
+	}
+	has_country_shield = yes
+	
+	kor_samin_policy = {
+	icon = mission_rice_field
+	required_missions = { }
+	provinces_to_highlight = {
+			OR = {
+				AND = {
+					province_id = 2742
+					NOT = { culture = korean }
+					NOT = { culture = korean_new }
+				}
+				AND = {
+					province_id = 2743
+					NOT = { culture = korean }
+					NOT = { culture = korean_new }
+				}
+			}
+		}
+
+		trigger = {
+			2742 = {
+				OR = {
+					culture = korean
+					culture = korean_new
+				}
+			}
+			2743 = {
+				OR = {
+					culture = korean
+					culture = korean_new
+				}
+			}
+		}
+		effect = {
+			2742 = {
+				add_base_tax = 1
+				add_base_production = 1
+				add_base_manpower = 1
+				add_province_modifier = {
+					name = kor_togwan
+					duration = -7300
+				}
+			}
+			2743 = {
+				add_base_tax = 1
+				add_base_production = 1
+				add_base_manpower = 1
+				add_province_modifier = {
+					name = kor_togwan
+					duration = -7300
+				}
+			}
+		}
+	}
+	
+	kor_jeju_byulbangjin = {
+	icon = mission_early_game_buildings
+	required_missions = { kor_samin_policy }
+	position = 2
+	provinces_to_highlight = {
+		province_id = 2741
+		OR = {
+			NOT = { owned_by = ROOT }
+			AND = {
+				NOT = { has_building = courthouse }
+				NOT = { has_building = town_hall }
+			}
+		}
+	}
+	trigger = {
+		owns = 2741
+		2741 = {
+			OR = {
+				has_building = courthouse
+				has_building = town_hall
+			}
+		}
+	}
+	effect = {
+		2741 = {
+			add_province_modifier = {
+					name = jeju_byulbangjin
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_the_eight_state = {
+	icon = mission_conquer_50_development
+	required_missions = { kor_jeju_byulbangjin }
+	position = 3
+	trigger = {
+			development_in_provinces = {
+			value = 400
+			region = korea_region
+		}
+	}
+	effect = {
+			korea_region = {
+				add_province_modifier = {
+					name = kor_administration
+					duration = -1
+				}
+			}
+		}
+	}
+	
+	kor_amhaeng_eosa = {
+	icon = mission_amhaeng_eosa
+	required_missions = { kor_the_eight_state }
+	position = 4
+	trigger = {
+			NOT = {
+				estate_influence = {
+				estate = all
+				influence = 25
+			}
+		}
+	}
+	effect = {
+			add_country_modifier = {
+				name = kor_amhaeng_eosa_1
+				duration = -1
+			}
+		}
+	}
+}
+	
+	
+	
+	
+	
+	
