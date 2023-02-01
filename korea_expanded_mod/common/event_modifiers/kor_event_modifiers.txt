@@ -1,0 +1,136 @@
+kor_hangul = {
+	all_power_cost = -0.05
+}
+kor_establish_hangul_1 = {
+	institution_growth = 2
+}
+kor_hall_of_worthies = {
+	advisor_cost = -0.2
+	advisor_pool = 1
+}
+kor_sarim = {
+	yearly_corruption = -0.1
+}
+kor_hungu = {
+	legitimacy = 1
+}
+gyeongguk_daejoen = {
+	global_tax_modifier = 0.1
+	global_unrest = -2	
+	global_autonomy = -0.05	
+}
+kor_renaissance_bloom = {
+	innovativeness_gain = 0.5
+	global_prosperity_growth = 0.2
+}
+kor_legacy = {
+	production_efficiency = 0.2
+	build_cost = -0.15
+	build_time = -0.2
+}
+kor_engineering_skill = {
+	local_development_cost = -0.1	
+	local_development_cost_modifier = -0.25	
+}
+kor_urbanization = {
+	global_allowed_num_of_buildings = 2
+	allowed_num_of_manufactories = 1
+}
+kor_professioanl_army = {
+	yearly_army_professionalism = 0.02
+	drill_decay_modifier = -0.25
+	drill_gain_modifier = 0.25
+	land_attrition = -1
+	movement_speed = 0.25
+	land_forcelimit_modifier = -0.2
+	global_manpower_modifier = -0.2
+	capped_by_forcelimit = yes	
+}
+kor_conscription = {
+	land_forcelimit_modifier = 0.25
+	global_manpower_modifier = 0.5
+	reinforce_speed = 0.3
+	global_regiment_recruit_speed = -0.25
+	global_regiment_cost = -0.25
+	land_maintenance_modifier = -0.25
+	global_supply_limit_modifier = 1
+	discipline = -0.05
+	land_morale = -0.1
+	movement_speed = -0.25
+}
+kor_togwan = {
+	local_autonomy = -0.075
+	local_tax_modifier = 0.2
+	local_governing_cost = -0.25
+}
+kor_sejong_legacy = {
+	global_unrest = -3
+	stability_cost_modifier = -0.25
+}
+kor_state_council = {
+	free_policy = 1	
+}
+kor_hongmungwan = {
+	governing_cost = -0.4
+}
+kor_industry = {
+	global_trade_goods_size = 0.3
+}
+kor_hangul_introduced = {
+	prestige_decay = -0.03
+	prestige = 2
+	monthly_splendor = 2
+	idea_cost = -0.15
+}
+kor_daedong_law = {
+	global_tax_modifier = -0.1
+	state_maintenance_modifier = -0.25	
+}
+kor_hopae = {
+	global_regiment_recruit_speed = -0.25
+	manpower_recovery_speed = 0.25
+	reinforce_speed = 0.25
+}	
+kor_silhak_movement = {
+	yearly_harmony = 2
+	harmonization_speed = 0.5
+	tolerance_of_heretics_capacity = 2
+	tolerance_heretic = 3
+	can_not_build_missionaries = yes	
+}
+revive_hall_of_worthies = {
+	country_admin_power = 2
+	country_diplomatic_power = 2
+	country_military_power = 2
+}
+kor_bobusang = {
+	caravan_power = 0.2	
+}
+kor_chinese_trade = {
+	placed_merchant_power = 5
+	global_own_trade_power = 0.2
+}
+jeju_byulbangjin = {
+	local_tax_modifier = 0.25
+	local_governing_cost = -0.25	
+}
+kor_administration = {
+	local_governing_cost = -0.5
+	local_tax_modifier = 0.2
+	local_state_maintenance_modifier = -0.5
+}
+kor_amhaeng_eosa_1 = {
+	all_estate_influence_modifier = -0.15
+	all_estate_loyalty_equilibrium = -0.05
+	yearly_corruption = -0.15
+}
+KOR_international_trade = {
+	trade_range_modifier = 0.25	
+	global_trade_goods_size_modifier = 0.25
+	merchants = 1
+}
+kor_seongkyungwan_established = {
+	technology_cost = -0.1
+	embracement_cost = -0.25
+	global_institution_spread = 0.5
+}
